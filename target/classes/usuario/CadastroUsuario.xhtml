@@ -5,40 +5,46 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:define name="titulo">Cadastro de usuario</ui:define>
-	
+	<ui:define name="titulo">Cadastro de usuario</ui:define>
+
 	<ui:define name="corpo">
 		<h1>Novo usuario</h1>
-	
-		<p:toolbar>
-			<f:facet name="left">
-            	<p:button value="Novo" icon="ui-icon-document" outcome="/usuario/CadastroUsuario.xhtml" />
- 				
-            	<p:commandButton value="Salvar" icon="ui-icon-disk" action="#{usuarioBean.salvar}" />
-        	</f:facet>
-        	<f:facet name="right">
-            	<p:button value="Pesquisar" icon="ui-icon-search" outcome="/usuario/PesquisaUsuario.xhtml" />
-        	</f:facet>
-		</p:toolbar>
-	
-		<p:spacer/>
-		<p:spacer/>
-		
+
 		<h:form>
+			<p:toolbar>
+				<f:facet name="left">
+					<p:button value="Novo" icon="ui-icon-document"
+						outcome="/usuario/CadastroUsuario.xhtml" />
+
+					<p:commandButton value="Salvar" icon="ui-icon-disk"
+						action="#{usuarioBean.salvar}" ajax="false" />
+				</f:facet>
+				<f:facet name="right">
+					<p:button value="Pesquisar" icon="ui-icon-search"
+						outcome="/usuario/PesquisaUsuario.xhtml" />
+				</f:facet>
+			</p:toolbar>
+
+			<p:spacer />
+			<p:spacer />
+
 			<h:messages />
 			<h:inputHidden value="#{usuarioBean.usuario.codigo}" />
 			<h:inputHidden value="#{usuarioBean.usuario.situacao}" />
-			
+
 			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome:" for="nomeEd"/>
-				<p:inputText id="nomeEd" value="#{usuarioBean.usuario.nome}" required="true" size="50"/>
-				
-				<p:outputLabel value="Data Nascimento" for="dataEd"/>
-				<p:inputText id="dataEd" value="#{usuarioBean.usuario.nascimento}" size="10" maxlength="10"/>
-				
+				<p:outputLabel value="Nome:" for="nomeEd" />
+				<p:inputText id="nomeEd" value="#{usuarioBean.usuario.nome}"
+					required="true" size="50" />
+
+				<p:outputLabel value="Data Nascimento" for="dataEd" />
+				<p:inputText id="dataEd" value="#{usuarioBean.usuario.nascimento}"
+					size="10" maxlength="10" />
+
 				<p:outputLabel value="Celular:" for="celularEd" />
-				<p:inputText id="celularEd" value="#{usuarioBean.usuario.celular}" size="10" />
-				
+				<p:inputText id="celularEd" value="#{usuarioBean.usuario.celular}"
+					size="10" />
+
 				<p:outputLabel value="e-Mail:" for="email" />
 				<h:panelGroup>
 					<p:inputText id="email" label="e-Mail"
@@ -48,14 +54,14 @@
 					</p:inputText>
 					<h:message for="email" />
 				</h:panelGroup>
-				
+
 				<p:outputLabel value="Idioma:" for="idioma" />
 				<p:selectOneMenu id="idioma" value="#{usuarioBean.usuario.idioma}">
 					<f:selectItem itemValue="pt_BR" itemLabel="Português" />
 					<f:selectItem itemValue="en_US" itemLabel="English" />
 					<f:selectItem itemValue="es_ES" itemLabel="Espanol" />
 				</p:selectOneMenu>
-				
+
 				<p:outputLabel value="Login:" for="login" />
 				<p:inputText id="login" label="Login"
 					value="#{usuarioBean.usuario.login}" size="15" maxlength="15"
@@ -63,17 +69,17 @@
 					validatorMessage="Login deve ter no mínimo 5 e no máximo 15 caracters e só pode ter os simbolos '.' e '_'.">
 					<f:validateRegex pattern="([a-z]|[0-9]|[.]|[_]){5,15}" />
 				</p:inputText>
-				
+
 				<p:outputLabel value="Senha:" for="senha" />
 				<p:password id="senha" label="Senha"
 					value="#{usuarioBean.usuario.senha}" size="10" maxlength="10"
 					required="true" redisplay="true" />
-				
+
 				<p:outputLabel value="Conformar Senha:" for="confirmarSenhaEd" />
 				<p:password id="confirmarSenhaEd" label="Confirmar Senha"
 					value="#{usuarioBean.confirmarSenha}" size="10" maxlength="10"
 					required="true" redisplay="true" />
-			
+
 			</h:panelGrid>
 		</h:form>
 	</ui:define>
