@@ -1,0 +1,56 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de categoria</ui:define>
+
+	<ui:define name="corpo">
+		<h1>Nova categoria</h1>
+
+		<p:toolbar>
+			<f:facet name="left">
+				<p:button value="Novo" icon="ui-icon-document"
+					outcome="/categoria/CadastroCategoria.xhtml" />
+
+				<p:commandButton value="Salvar" icon="ui-icon-disk"
+					action="#{categoriaBean.salvar}" />
+			</f:facet>
+			<f:facet name="right">
+				<p:button value="Pesquisar" icon="ui-icon-search"
+					outcome="/categoria/PesquisaCategoria.xhtml" />
+			</f:facet>
+		</p:toolbar>
+
+		<p:spacer />
+		<p:spacer />
+
+		<h:form>
+			<h:messages />
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Categoria:"/>
+				<p:selectOneMenu id="categoria" value="#{categoriaBean.categoria.pai}" required="true">
+					<f:selectItem itemLabel="Selecione a categoria" />
+
+					<f:selectItems value="#{categoriaBean.categorias}"
+						itemLabel="#{categoria.descricao}" itemValue="#{categoria}" />
+				</p:selectOneMenu>
+					
+				<p:outputLabel value="Usuario:"/>
+				<p:selectOneMenu id="usuario" value="#{categoriaBean.categoria.usuario}" required="true" >
+					<f:selectItem itemLabel="Selecione o usuario" />
+
+					<f:selectItems value="#{categoriaBean.usuarios}" itemLabel="#{usuario.nome}" itemValue="#{usuario}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Descrição:" for="descricaoEd" />
+				<p:inputText id="descricaoEd" value="#{categoriaBean.descricao}"
+					required="true" size="50" />
+
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
