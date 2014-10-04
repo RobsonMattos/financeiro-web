@@ -65,6 +65,9 @@ public class UsuarioBean implements Serializable {
 	}
 	
 	public List<Usuario> getUsuariosFiltrados() {
+		if(usuariosFiltrados == null)
+			return usuarioService.obter();
+					
 		return usuariosFiltrados;
 	}
 }

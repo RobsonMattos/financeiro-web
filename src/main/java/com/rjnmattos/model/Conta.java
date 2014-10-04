@@ -6,7 +6,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  * 
@@ -46,8 +46,9 @@ public class Conta implements Serializable {
 		this.conta = conta;
 	}
 	
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "usuario_codigo")
+	@JoinColumn(name = "usuario_conta")
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -56,6 +57,7 @@ public class Conta implements Serializable {
 		this.usuario = usuario;
 	}
 	
+	@NotNull
 	@Column(name="descricao", nullable=true,length=150)	
 	public String getDescricao() {
 		return descricao;

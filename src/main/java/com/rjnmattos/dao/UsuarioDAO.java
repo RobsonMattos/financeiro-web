@@ -49,19 +49,7 @@ public class UsuarioDAO implements Serializable, ICrud<Usuario> {
 	}
 
 	public void salvar(Usuario obj) {
-		// em.merge(obj);
-
-		String insertStatement = "insert into usuario (nome, email, login, senha, celular, idioma, situacao) "
-				+ "values(?, ?, ?, ?, ?, ?, ?)";
-		Query query = em.createNativeQuery(insertStatement);
-		query.setParameter(1, obj.getNome());
-		query.setParameter(2, obj.getEmail());
-		query.setParameter(3, obj.getLogin());
-		query.setParameter(4, obj.getSenha());
-		query.setParameter(5, obj.getCelular());
-		query.setParameter(6, "pt_BR");
-		query.setParameter(7, obj.getSituacao());
-		query.executeUpdate();
+		em.merge(obj);
 	}
 
 	public void editar(Usuario obj) {
